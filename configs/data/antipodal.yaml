@@ -1,0 +1,25 @@
+# Antipodal Regime Switching Data Configuration
+
+# Data generation parameters
+generator:
+  latent_dim: 8
+  obs_dim: 4
+  p_switch: 0.05
+  sigma_epsilon: 0.01
+  sigma_eta: 0.05
+  T: 10000
+  history_length: 10
+  window_radius: 5
+
+# Data loading
+dataloader:
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+
+# Data splits
+splits:
+  train_frac: 0.6
+  val_frac: 0.2
+  test_frac: 0.2

@@ -1,0 +1,26 @@
+# PyTorch Lightning Trainer Configuration
+
+max_epochs: 50
+accelerator: auto  # 'auto', 'gpu', 'cpu', 'tpu'
+devices: 1
+precision: 16-mixed  # '32', '16-mixed', 'bf16-mixed'
+
+# Performance
+gradient_clip_val: 1.0
+gradient_clip_algorithm: norm
+accumulate_grad_batches: 1
+
+# Logging
+log_every_n_steps: 10
+enable_progress_bar: true
+enable_model_summary: true
+
+# Debugging (set these to true for debugging)
+fast_dev_run: false  # Run single batch for debugging
+overfit_batches: 0  # Overfit on subset (e.g., 0.01 for 1%)
+limit_train_batches: 1.0  # Fraction of training data
+limit_val_batches: 1.0
+limit_test_batches: 1.0
+
+# Profiling
+profiler: null  # 'simple', 'advanced', 'pytorch', null
