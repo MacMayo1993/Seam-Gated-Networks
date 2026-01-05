@@ -1,0 +1,51 @@
+# Hydra Configuration for Seam-Gated Networks
+# Usage: python train_hydra.py
+
+defaults:
+  - _self_
+  - model: z2_seam
+  - data: antipodal
+  - trainer: default
+
+# Experiment settings
+experiment:
+  name: seam_gated_exp
+  seed: 42
+  log_dir: ${hydra:runtime.cwd}/logs/${experiment.name}
+  save_dir: ${hydra:runtime.cwd}/results/${experiment.name}
+
+# Reproducibility
+reproducibility:
+  deterministic: false  # Set to true for full reproducibility (slower)
+  benchmark: true  # cudnn.benchmark for speed
+
+# Logging
+logging:
+  log_every_n_steps: 10
+  use_tensorboard: true
+  use_wandb: false
+  wandb_project: seam-gated-networks
+  wandb_entity: null
+
+# Checkpointing
+checkpointing:
+  save_top_k: 3
+  monitor: val/loss
+  mode: min
+  save_last: true
+
+# Early stopping
+early_stopping:
+  enabled: true
+  monitor: val/loss
+  patience: 10
+  mode: min
+  min_delta: 0.0
+
+# Hydra job configuration
+hydra:
+  run:
+    dir: ${experiment.log_dir}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: ${experiment.log_dir}/sweeps/${now:%Y-%m-%d_%H-%M-%S}
+    subdir: ${hydra.job.num}

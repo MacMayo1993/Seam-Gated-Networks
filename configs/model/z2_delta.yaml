@@ -1,0 +1,18 @@
+# Z2 Gated Delta RNN Configuration (High-Performance)
+
+_target_: lightning_module.SeamGatedLightningModule
+
+model_type: z2_delta
+input_dim: 4
+hidden_dim: 64
+temperature: 0.05
+learning_rate: 1e-3
+weight_decay: 0.0
+max_epochs: 50
+warmup_epochs: 5
+gradient_clip_val: 1.0
+use_amp: true
+
+# Gated Delta specific
+delta_rank: 8  # hidden_dim // 8
+use_parallel_scan: true

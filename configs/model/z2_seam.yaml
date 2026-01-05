@@ -1,0 +1,19 @@
+# Z2 Seam-Gated RNN Configuration
+
+_target_: lightning_module.SeamGatedLightningModule
+
+model_type: z2_seam
+input_dim: 4
+hidden_dim: 64
+temperature: 0.05
+learning_rate: 1e-3
+weight_decay: 0.0
+max_epochs: 50
+warmup_epochs: 5
+gradient_clip_val: 1.0
+use_amp: true
+
+# Model-specific parameters
+k_star: null  # Use default (1/(2*ln(2)))
+orthogonal_flip: false
+verify_properties: false  # Set true for debugging
